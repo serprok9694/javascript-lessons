@@ -256,3 +256,68 @@ let party = ["Solo", "Dread", "Nexus"];
 party.forEach((item, index, array) => {
     console.log(`${item} имеет ${index} в ${array}`);
 });
+
+// * Метод filter
+// important: позволяет фильтровать по заданному условию исходный массив
+// todo: отфильтровать массив и оставить только объекты, где возраст равен 22
+
+let party = [
+    { name: 'Dread', age: 18 },
+    { name: 'Solo', age: 25 },
+    { name: 'NS', age: 22 },
+    { name: 'Nexus', age: 17 },
+    { name: 'Flash', age: 22 },
+    { name: 'Dandy', age: 23 },
+];
+
+// party.filter(function(элемент массива, индекс, сам массив) {})
+
+const filteredParty = party.filter(function(person, index, array) {
+    if (person.age === 22) {
+        return true;
+    };
+});
+const filteredParty = party.filter(function(person, index, array) {
+    return person.age === 22;
+});
+// warning: запись можно упростить с использованием стрелочной функции
+const filteredParty = party.filter(person => person.age === 22);
+
+// * Метод reduce
+// important: позволяет вычислить единое значение на основе всего массива
+
+// todo: вычислить суммарный age всех персонажей
+
+let party = [
+    { name: 'Dread', age: 18 },
+    { name: 'Solo', age: 25 },
+    { name: 'NS', age: 22 },
+    { name: 'Nexus', age: 17 },
+    { name: 'Flash', age: 22 },
+    { name: 'Dandy', age: 23 },
+];
+// party.reduce((начальное значение, элемент массива, индекс, сам массив) => {}, начальное значение);
+const totalAge = party.reduce((total, person, index, array) => {
+    return total += person.age;             // возвращает 127;
+}, 0);
+
+// warning: запись можно упростить с использованием стрелочной функции
+const totalAge = party.reduce((total, person) => total += person.age, 0);
+
+// * Метод find
+// important: обеспечивает поиск в массиве объектов с определенным условием
+// important: возвращает первый попавшщийся элемент, удовлетворяющий условию
+
+// todo: найти первого персонажа с возрастом 17
+
+// party.find((элемент массива, индекс, сам массив) => {})
+const youngPerson = party.find(person => person.age === 17);
+console.log(youngPerson);               // возвращает объект { name: 'Nexus', age: 17 }
+
+// * Метод findIndex
+// important: обеспечивает поиск в массиве с определенным условием
+// important: возвращает индекс первого попавшегося элемента, удовлетворяющего условию
+
+// party.findIndex((элемент массива, индекс, сам массив) => {})
+const youngPerson = party.findIndex(person => person.age === 17);    // возвращает индекс первого попавшегося персонажа с возрастом 17
+console.log(youngPerson);               // возвращает индекс 3
